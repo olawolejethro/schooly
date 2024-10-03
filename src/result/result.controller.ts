@@ -18,9 +18,9 @@ export class ResultController {
     return this.resultService.processResult(createResultDto);
   }
 
-  // @Post('bulk')
-  // @UseInterceptors(FileInterceptor('file'))
-  // uploadBulkResults(@UploadedFile() file: Express.Multer.File) {
-  //   return this.resultService.processBulk(file);
-  // }
+  @Post('bulk')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadBulkResults(@UploadedFile() file: Express.Multer.File) {
+    return this.resultService.processBulk(file);
+  }
 }
