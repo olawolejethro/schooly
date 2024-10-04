@@ -44,7 +44,6 @@ export class ResultService {
     result.gpa = resultData.gpa;
     result.cgpa = resultData.cgpa;
     result.student = student;
-
     return await this.resultRepository.save(result);
   }
 
@@ -54,6 +53,9 @@ export class ResultService {
     );
     if (bulkResult) {
       // Process data in the background to prevent blocking
+      console.log(
+        JSON.stringify({ message: 'Processing Bulk Results', bulkResult }),
+      );
       await this.queueService.processBulkResults(bulkResult.results);
     }
     if (file) {

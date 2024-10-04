@@ -8,16 +8,17 @@ import { SessionModule } from './session/session.module';
 import { SemesterModule } from './semester/semester.module';
 import QueueModule from './queue/queue.module';
 import { ConfigModule } from '@nestjs/config';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-console.log('hey', process.env.HOST);
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.HOST || 'localhost',
-      port: 5432,
-      username: process.env.USERNAME,
+      host: process.env.HOST,
+      port: +process.env.PORT,
+      username: process.env.DB_USERNAME,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
       autoLoadEntities: true,

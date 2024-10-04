@@ -10,7 +10,7 @@ import { Session } from '../session/session.entity';
 import { Semester } from '../semester/semester.entity';
 import { StudentModule } from 'src/student/student.module';
 import { QueueService } from './queue/result.queue';
-import { ResultProcessor } from './result.processor';
+import { ResultJobProcessor } from './queue/result.processor';
 
 @Module({
   imports: [
@@ -18,14 +18,10 @@ import { ResultProcessor } from './result.processor';
 
     BullModule.registerQueue({
       name: 'bulk-results', // Register the queue
-      redis: {
-        host: 'localhost', // Replace with your Redis host
-        port: 6379,
-      },
     }),
     StudentModule,
   ],
   controllers: [ResultController],
-  providers: [ResultService, QueueService, ResultProcessor],
+  providers: [ResultService, QueueService, ResultJobProcessor],
 })
 export class ResultModule {}

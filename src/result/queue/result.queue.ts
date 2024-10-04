@@ -11,6 +11,7 @@ export class QueueService {
   ) {}
 
   async processBulkResults(results: CreateResultDto[]) {
+    console.log(JSON.stringify({ message: 'processBulkResults', results }));
     const job = await this.bulkResultsQueue.add('bulk-results', results);
     return job;
   }
