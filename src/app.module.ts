@@ -7,16 +7,19 @@ import { CourseModule } from './course/course.module';
 import { SessionModule } from './session/session.module';
 import { SemesterModule } from './semester/semester.module';
 import QueueModule from './queue/queue.module';
+import { ConfigModule } from '@nestjs/config';
 
+console.log('hey', process.env.HOST);
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: process.env.HOST || 'localhost',
       port: 5432,
-      username: 'postgres',
-      password: 'Olawole111?',
-      database: 'academ',
+      username: process.env.USERNAME,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
     }),
