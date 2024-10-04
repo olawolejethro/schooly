@@ -4,7 +4,7 @@ import { Result } from './result.entity';
 @Entity()
 export class Course {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column()
   courseCode: string;

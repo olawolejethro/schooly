@@ -28,10 +28,10 @@ export class Result {
   semester: string;
 
   @Column({ nullable: true })
-  gpa?: String;
+  gpa?: number;
 
   @Column({ nullable: true })
-  cgpa?: String;
+  cgpa?: number;
 
   @Column({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

@@ -6,7 +6,7 @@ import { StudentModule } from './student/student.module';
 import { CourseModule } from './course/course.module';
 import { SessionModule } from './session/session.module';
 import { SemesterModule } from './semester/semester.module';
-// import { QueueModule } from './queue/queue.module';
+import QueueModule from './queue/queue.module';
 
 @Module({
   imports: [
@@ -20,18 +20,12 @@ import { SemesterModule } from './semester/semester.module';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    BullModule.forRoot({
-      redis: {
-        host: 'localhost',
-        port: 6379,
-      },
-    }),
     ResultModule,
     StudentModule,
     CourseModule,
     SessionModule,
     SemesterModule,
-    // QueueModule,
+    QueueModule,
   ],
 })
 export class AppModule {}
